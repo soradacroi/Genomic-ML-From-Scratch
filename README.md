@@ -1,7 +1,6 @@
 # Genomic-ML-From-Scratch
 
 the DNA classes and their corresponding class labels:
-
 | Receptor/Enzyme Type    | class labels |
 |:----------------------------|:--:|
 | G protein coupled receptors | 0 |
