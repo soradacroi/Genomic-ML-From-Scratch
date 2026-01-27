@@ -11,7 +11,7 @@ the DNA classes and their corresponding class labels:
 | Ion channel                 | 5 |
 | Transcription factor        | 6 |
 
-**using_ub_classifier.py**
+### using_nb_classifier.py
 
 (each line is writen after i edit the code and run it again and see if it fixes)
 
