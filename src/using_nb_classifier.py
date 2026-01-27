@@ -1,5 +1,5 @@
 from nb_text_classifier import TextMood, load_data
-import random
+import random as r
 import csv
 
 files = {'data/human.csv': 'human', 'data/dog.csv': 'dog'}
@@ -9,6 +9,7 @@ for f, species in files.items():
     with open(f, 'r') as csvfile:
         reader = csv.DictReader(csvfile)
         all_rows = list(reader) 
+        r.shuffle(all_rows)
         train_data += [(" ".join(row['sequence']), species) for row in all_rows[:810]]
         test_data += [(" ".join(row['sequence']), species) for row in all_rows[810:820]]
 
@@ -20,12 +21,13 @@ print(f"Sample at index 819: {train_data[819][1]}")
 
 print("total test data :",len(test_data))
 
-random.shuffle(train_data)
+
 print()
 
-model = TextMood(stop_words= ["n"], ngram_range=(3, 3))
 
-model.train(train_data, ["human", "dog"], print_vocab = True)
+model = TextMood(ngram_range=(6, 8), stop_words = [])
+
+model.train(train_data, ["human", "dog"])
 
 print()
 correct = 0
