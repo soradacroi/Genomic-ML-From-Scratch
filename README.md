@@ -11,11 +11,11 @@ the DNA classes and their corresponding class labels:
 | Ion channel                 | 5 |
 | Transcription factor        | 6 |
 
-
+---
 
 (each line is writen after i edit the code)
 
-
+---
 
 ### using_nb_classifier.py
 
@@ -32,6 +32,8 @@ i tried to change the dataset of dogs to chimpanzee, and the results were like c
 maybe because humans and chimpanzees share more dna then dogs with humans, maybe thats why its not getting better results with chimps (ik dogs was not that good but its still better then chimps).
 
 anyways this [nb_text_classifier](https://github.com/soradacroi/textmood-classifier) is not that good and advance anyways.
+
+---
 
 ### counting.py
 
