@@ -1,4 +1,4 @@
-# TextMood-Classifier
+# nb text classifier
 
 import math
 import random
