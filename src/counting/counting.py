@@ -16,7 +16,7 @@ for f, species in files.items():
 
 
 G = {"A", "G", "C", "T", "N"}
-n = 3
+n = 4
 
 def make_str(n=n, G={"A", "G", "C", "T", "N"}):
     if n == 1:
@@ -101,8 +101,9 @@ def test(data):
     for_h = 0
     for_d = 0
     
-    for i in k_t:
+    for i in list(d_x_h.keys())[20:50]:
         for_h += (k_x_t[i] - d_x_h[i])**2
+    for i in list(d_x_d.keys())[20:50]:
         for_d += (k_x_t[i] - d_x_d[i])**2
     
     x_h = for_h**0.5
