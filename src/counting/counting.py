@@ -27,14 +27,16 @@ def make_str(n=n, G={"A", "G", "C", "T", "N"}):
         for char in G:
             output.append(item + char)  
     return output
+g_s = make_str()
 
-d_h = {}
-d_d = {}
+k_h = {}
+k_d = {}
 
-for i in make_str():
-    d_h[i], d_d[i] = 0, 0
 
-print(len(d_h))
+for i in g_s:
+    k_h[i], k_d[i] = 0, 0
+
+print(len(k_h))
 
 def split_g(g, n = n):
     i = len(g)
@@ -47,28 +49,75 @@ def split_g(g, n = n):
     
             
 h, d = 0, 0
+
 for i in training_data:
     s_g = ((split_g(i[0])))
     
     if i[1] == "human":
         for i in s_g:
-            d_h[i] += 1
+            k_h[i] += 1
             h += 1
     elif i[1] == "dog":
         for i in s_g:
-            d_d[i] += 1  
+            k_d[i] += 1  
             d += 1 
 
 
 d_x_h = {}
 d_x_d = {}
-for i in d_h:
-    d_x_h[i] = (d_h[i])/(h)
-for i in d_h:
-    d_x_d[i] = (d_d[i])/(d) 
+for i in k_h:
+    d_x_h[i] = (k_h[i])/(h)
+    d_x_d[i] = (k_d[i])/(d) 
 
+d_x_h = dict(sorted(d_x_h.items(), key=lambda x: x[1], reverse=True))
+d_x_d = dict(sorted(d_x_d.items(), key=lambda x: x[1], reverse=True))
 print(d_x_h)
 print(d_x_d)
 
+# human
+#['CTG', 'CAG', 'TGG', 'CCA', 'GGA', 'AGA', 'CCT', 'GCC', 'CCC', 'GAG', 'GAA', 'AAG', ...
+# ...
+# ... 'NGN', 'NNN', 'NCN', 'CAN', 'CTN', 'CGN', 'CNA', 'CNT', 'CNG', 'CNN', 'CNC', 'CCN']
 
+# dog
+#['CTG', 'CAG', 'TGG', 'CCA', 'GGA', 'GCC', 'CCC', 'AGA', 'CCT', 'GAG', 'GAA', 'AAG', ...
+# ...
+# ... 'NTA', 'NTG', 'NTN', 'NTC', 'NGN', 'NNA', 'NNT', 'NCN', 'CAN', 'CTN', 'CNA', 'CNT']
+
+def test(data):
+    k_t = {}
+    for i in g_s:
+        k_t[i] = 0
+    k = split_g(data)
+    l = 0
+    for i in k:
+        k_t[i] += 1
+        l += 1
     
+    k_x_t = {}
+    for i in k_t:
+        k_x_t[i] = k_t[i]/l
+
+    for_h = 0
+    for_d = 0
+    
+    for i in k_t:
+        for_h += (k_x_t[i] - d_x_h[i])**2
+        for_d += (k_x_t[i] - d_x_d[i])**2
+    
+    x_h = for_h**0.5
+    x_d = for_d**0.5
+
+    if x_h < x_d:
+        return "human"
+    elif x_d < x_h:
+        return "dog"
+
+print()
+c = 0
+for i in test_data:
+    p = test(i[0])
+    print(p, i[1])
+    if p == i[1]:
+        c += 1
+print(c/len(test_data))

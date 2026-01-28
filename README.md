@@ -38,3 +38,5 @@ anyways this [nb_text_classifier](https://github.com/soradacroi/textmood-classif
 ### counting.py
 
 this one (counting.py), well when making the models (im saying the d_x_h and d_x_d models) its giving some stable models (meaning some stable values for each kmer (ig thats what its called kmer)) i havent tested yet, its 2:21 am i should sleep gn
+
+well its shit... also i rememeber mid way that i was thinking of counting and compairing the sequences but now i did something diff
