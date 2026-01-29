@@ -14,11 +14,11 @@ for f, species in files.items():
         test_data += [((row['sequence']), species) for row in all_rows[700:820]]
 
 
-G = {"A", "G", "C", "T"}
+G = {"A", "G", "C", "T", "N"}
 n = 4
 checking_range = (20, 90)
 
-def make_str(n=n, G={"A", "G", "C", "T"}):
+def make_str(n=n, G={"A", "G", "C", "T", "N"}):
     if n == 1:
         return G
     output = []
@@ -43,8 +43,7 @@ def split_g(g, n = n):
     j = 0
     m = []
     while j + n != i:
-        if "N" not in g[j:n+j]:
-            m.append(g[j:n+j])
+        m.append(g[j:n+j])
         j += 1
     return m
     
