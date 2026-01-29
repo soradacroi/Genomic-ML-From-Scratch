@@ -40,3 +40,16 @@ anyways this [nb_text_classifier](https://github.com/soradacroi/textmood-classif
 this one (counting.py), well when making the models (im saying the d_x_h and d_x_d models) its giving some stable models (meaning some stable values for each kmer (ig thats what its called kmer)) i havent tested yet, its 2:21 am i should sleep gn
 
 well its shit... also i rememeber mid way that i was thinking of counting and compairing the sequences but now i did something diff
+
+ok well i made the test data a litter bigger and well the acuraccy is more then 50+%... 
+
+even if its just 51% its still better then 50 (my copium is running out)... well atleast its not going down then 50... it did but its rare
+and well its not really counting its more like **"Euclidean Distance"** then counting. 
+
+...
+
+---
+
+well im not a bio student (that dont make any sense ik)
+
+maybe in future i will use **"Cosine Similarity"** or smt that actually works maybe??
