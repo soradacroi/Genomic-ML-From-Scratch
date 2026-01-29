@@ -1,7 +1,6 @@
 import csv
 import random as r
-from decimal import Decimal, getcontext
-getcontext().prec = 5
+
 
 files = {'data/human.csv': 'human', 'data/dog.csv': 'dog'}
 training_data = []
@@ -11,14 +10,15 @@ for f, species in files.items():
         reader = csv.DictReader(csvfile)
         all_rows = list(reader) 
         r.shuffle(all_rows)
-        training_data += [((row['sequence']), species) for row in all_rows[:810]]
-        test_data += [((row['sequence']), species) for row in all_rows[810:820]]
+        training_data += [((row['sequence']), species) for row in all_rows[:700]]
+        test_data += [((row['sequence']), species) for row in all_rows[700:820]]
 
 
-G = {"A", "G", "C", "T", "N"}
+G = {"A", "G", "C", "T"}
 n = 4
+checking_range = (20, 90)
 
-def make_str(n=n, G={"A", "G", "C", "T", "N"}):
+def make_str(n=n, G={"A", "G", "C", "T"}):
     if n == 1:
         return G
     output = []
@@ -43,7 +43,8 @@ def split_g(g, n = n):
     j = 0
     m = []
     while j + n != i:
-        m.append(g[j:n+j])
+        if "N" not in g[j:n+j]:
+            m.append(g[j:n+j])
         j += 1
     return m
     
@@ -71,8 +72,8 @@ for i in k_h:
 
 d_x_h = dict(sorted(d_x_h.items(), key=lambda x: x[1], reverse=True))
 d_x_d = dict(sorted(d_x_d.items(), key=lambda x: x[1], reverse=True))
-print(d_x_h)
-print(d_x_d)
+#print(d_x_h)
+#print(d_x_d)
 
 # human
 #['CTG', 'CAG', 'TGG', 'CCA', 'GGA', 'AGA', 'CCT', 'GCC', 'CCC', 'GAG', 'GAA', 'AAG', ...
@@ -101,9 +102,9 @@ def test(data):
     for_h = 0
     for_d = 0
     
-    for i in list(d_x_h.keys())[20:50]:
+    for i in list(d_x_h.keys())[checking_range[0] : checking_range[1]]:
         for_h += (k_x_t[i] - d_x_h[i])**2
-    for i in list(d_x_d.keys())[20:50]:
+    for i in list(d_x_d.keys())[checking_range[0] : checking_range[1]]:
         for_d += (k_x_t[i] - d_x_d[i])**2
     
     x_h = for_h**0.5
